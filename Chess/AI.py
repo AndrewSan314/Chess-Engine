@@ -4,7 +4,7 @@ Handling the AI moves.
 import random
 import numpy
 
-piece_score = {"K": 0, "Q": 900, "R": 500, "B": 330, "N": 320, "p": 100}
+piece_score = {"K": 20000, "Q": 900, "R": 500, "B": 330, "N": 320, "p": 100}
 
 PAWN_TABLE = numpy.array([
     [0, 0, 0, 0, 0, 0, 0, 0],
@@ -77,20 +77,7 @@ STALEMATE = 0
 DEPTH = 3
 
 
-def get_piece_position_score(board):
-    white = 0
-    black = 0
-    for x in range(8):
-        for y in range(8):
-            piece = board.chesspieces[x][y]
-            if (piece != 0):
-                if (piece.piece_type == piece_type):
-                    if (piece.color == pieces.Piece.WHITE):
-                        white += table[x][y]
-                    else:
-                        black += table[7 - x][y]
 
-    return white - black
 
 def findBestMove(game_state, valid_moves, return_queue):
     global next_move, count
@@ -150,7 +137,7 @@ def scoreBoard(game_state):
                 if piece[0] == "w":
                     score += piece_score[piece[1]] + piece_position_score
                 if piece[0] == "b":
-                    score -= piece_score[piece[1]] + piece_position_score
+                    score -= piece_score[piece[1]] + piece_position_score * .01
 
     return score
 

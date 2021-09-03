@@ -45,9 +45,9 @@ class GameState:
         self.move_log.append(move)
         self.WhiteToMove = not self.WhiteToMove
         # update king location if undo move
-        if move.pieceMoved == 'wk':
+        if move.pieceMoved == 'wK':
             self.WhiteKingpos = (move.endRow, move.endCol)
-        elif move.pieceMoved == 'bk':
+        elif move.pieceMoved == 'bK':
             self.BlackKingpos = (move.endRow, move.endCol)
 
         # pawn promotion
